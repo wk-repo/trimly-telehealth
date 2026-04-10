@@ -876,7 +876,39 @@ on-appointment-cancelled trigger fires
 
 ---
 
-### A7. Handling No-Shows
+### A7. Reassigning Doctor to an Appointment
+
+**As a** clinic admin, **I want to** change the assigned doctor on an appointment **so that** I can handle scheduling conflicts or doctor availability changes.
+
+**Journey:**
+
+```
+Appointment exists with Doctor A assigned
+  |
+  v
+Admin opens appointment in admin app
+  |  e.g., Doctor A is unavailable, or patient requested a different doctor
+  |
+  v
+Admin changes Practitioner reference on the Appointment
+  |  Selects Doctor B from available practitioners
+  |
+  v
+Appointment updated
+  |  Patient notified via email + WhatsApp of the change
+  |  New doctor sees the appointment in their calendar
+  |  Old doctor no longer sees it
+```
+
+**Acceptance criteria:**
+- Admin can reassign any appointment to a different doctor
+- Patient notified of the doctor change (email + WhatsApp)
+- Updated appointment reflects in the new doctor's calendar
+- Original doctor's calendar updated (appointment removed)
+
+---
+
+### A8. Handling No-Shows
 
 **As a** clinic admin, **I want to** process no-show fees **so that** missed appointments have consequences.
 
@@ -914,7 +946,7 @@ Payment result:
 
 ---
 
-### A8. Handling Failed Payments
+### A9. Handling Failed Payments
 
 **As a** clinic admin, **I want to** identify and recover failed payments **so that** revenue is not lost.
 
@@ -945,7 +977,7 @@ Admin retries payment via process-payment bot
 
 ---
 
-### A9. Managing Doctor Schedules
+### A10. Managing Doctor Schedules
 
 **As a** clinic admin, **I want to** set and adjust doctor schedules **so that** appointment availability is correct.
 
@@ -981,7 +1013,7 @@ generate-slots bot runs weekly
 
 ---
 
-### A10. Managing Clinical Note Templates
+### A11. Managing Clinical Note Templates
 
 **As a** clinic admin, **I want to** create and manage clinical note templates **so that** doctors have consistent documentation for each visit type.
 
@@ -1017,7 +1049,7 @@ Doctors see the template pre-populated when documenting that visit type
 
 ---
 
-### A11. Sending Invoices and Receipts
+### A12. Sending Invoices and Receipts
 
 **As a** clinic admin, **I want to** send invoices before charging and receipts after charging **so that** patients have proper billing documentation.
 
@@ -1047,7 +1079,7 @@ After successful charge:
 
 ---
 
-### A12. Viewing Abandoned Cart Alerts
+### A13. Viewing Abandoned Cart Alerts
 
 **As a** clinic admin, **I want to** know when patients abandon the booking process **so that** I can follow up if needed.
 
@@ -1229,12 +1261,13 @@ reminder
 | A4 | Admin | Book follow-up appointments | Must-have |
 | A5 | Admin | Monitor appointment activity | Should-have |
 | A6 | Admin | Cancel appointment (free, notifies patient) | Must-have |
-| A7 | Admin | Handle no-show ($20 fee + WhatsApp notification) | Must-have |
-| A8 | Admin | Handle failed payments (send card update link, retry) | Must-have |
-| A9 | Admin | Manage doctor schedules (base hours + recurring + block-outs) | Must-have |
-| A10 | Admin | Manage clinical note templates per visit type | Must-have |
-| A11 | Admin | Send invoices (before charge) and receipts (after charge) via email | Must-have |
-| A12 | Admin | View abandoned cart alerts | Nice-to-have |
+| A7 | Admin | Reassign doctor to appointment (notifies patient) | Must-have |
+| A8 | Admin | Handle no-show ($20 fee + WhatsApp notification) | Must-have |
+| A9 | Admin | Handle failed payments (send card update link, retry) | Must-have |
+| A10 | Admin | Manage doctor schedules (base hours + recurring + block-outs) | Must-have |
+| A11 | Admin | Manage clinical note templates per visit type | Must-have |
+| A12 | Admin | Send invoices (before charge) and receipts (after charge) via email | Must-have |
+| A13 | Admin | View abandoned cart alerts | Nice-to-have |
 | PH1 | Pharmacy | Fulfill prescription + delivery tracking (after payment) | Must-have |
 
 ### MVP: External Tools
